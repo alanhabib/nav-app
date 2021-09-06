@@ -3,6 +3,11 @@ import { NavLink, Switch } from "react-router-dom";
 import routes from "../Routes";
 import RouteWithSubRoutes from "../../utils/RouteWithSubRoutes";
 
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+`;
 const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,21 +27,21 @@ const LinkR = styled(NavLink)`
 
 const Tree = () => {
   return (
-    <SideBarContainer>
-      <LinkR activeStyle={{ color: "lightblue" }} to="/home">
-        Home
-      </LinkR>
-      <LinkR activeStyle={{ color: "lightblue" }} to="/about">
-        About
-      </LinkR>
-      <>
-        <Switch>
-          {routes?.map((route: any, i: number) => {
-            return <RouteWithSubRoutes key={i} {...route} />;
-          })}
-        </Switch>
-      </>
-    </SideBarContainer>
+    <Wrapper>
+      <SideBarContainer>
+        <LinkR activeStyle={{ color: "lightblue" }} to="/home">
+          Home
+        </LinkR>
+        <LinkR activeStyle={{ color: "lightblue" }} to="/about">
+          About
+        </LinkR>
+      </SideBarContainer>
+      <Switch>
+        {routes?.map((route: any, i: number) => {
+          return <RouteWithSubRoutes key={i} {...route} />;
+        })}
+      </Switch>
+    </Wrapper>
   );
 };
 
